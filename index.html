@@ -1,9 +1,135 @@
+
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website AI Chat for koder </title>
+    <style>
+        header{
+            background-color: grey;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: center; /* Center the nav links */
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh; /* Set to viewport height */
+            background-color: dimgray;
+        }
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: center; /* Center the nav links */
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav ul li {
+            margin-right: 50px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            border-right: 2px solid #ccc;
+            position: relative;
+            z-index: 1; /* Set a lower z-index for main content */
+        }
+        .side-container {
+            width: 0; /* Start hidden */
+            overflow: hidden;
+            transition: width 0.3s ease;
+            border-left: 2px solid #ccc;
+            height: 100%; /* Set to full height */
+            position: fixed;
+            top: 0;
+            right: 0;
+            background: white;
+            z-index: 2; /* Higher z-index to overlay main content */
+        }
+        .side-container iframe {
+            width: 100%;
+            height: 100%; /* Set to full height */
+            border: none;
+        }
+        .slide-button {
+            position: absolute;
+            top: 20px;
+            right: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: right 0.3s ease; /* Add transition for sliding effect */
+        }
+        .slide-button.open {
+            right: calc(30% + 10px); /* Adjust position when side-container is open */
+        }
+    </style>
+    </style>
+    <header>
+        <h1>IKT hjelp</h1>
+    </header>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="index.html">IKT og Kode hjelp </a></li>
+            <li><a href="code.html">Kode hjelp</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <p>Chat.</p>
+        <button id="toggleButton" class="slide-button">Åpne Hjelpe side</button>
+    </div>
+
+    <!-- Side Container -->
+    <div class="side-container" id="sideContainer">
+        <iframe src="https://copilotstudio.microsoft.com/environments/Default-1b6bba49-6f35-4d82-9fca-4827d417cd3e/bots/crc1e_kodeHjelperAi/webchat?__version__=2"></iframe>
+    </div>
+
+    <script>
+        const toggleButton = document.getElementById('toggleButton');
+        const sideContainer = document.getElementById('sideContainer');
+
+        toggleButton.addEventListener('click', () => {
+            if (sideContainer.style.width === "30%") {
+                sideContainer.style.width = "0";
+                toggleButton.textContent = "Åpne Hjelpe side";
+                toggleButton.classList.remove('open');
+            } else {
+                sideContainer.style.width = "30%";
+                toggleButton.textContent = "Lukk Hjelpe side";
+                toggleButton.classList.add('open');
+                // Ensure the iframe is added when the container opens
+                if (!sideContainer.querySelector('iframe')) {
+                    const iframe = document.createElement('iframe');
+                    iframe.src = "https://copilotstudio.microsoft.com/environments/Default-1b6bba49-6f35-4d82-9fca-4827d417cd3e/bots/crc1e_kodeHjelperAi/webchat?__version__=2";
+                    sideContainer.appendChild(iframe);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
     <iframe
       src="https://copilotstudio.microsoft.com/environments/Default-1b6bba49-6f35-4d82-9fca-4827d417cd3e/bots/crc1e_iktBrukerstotte/webchat?__version__=2"
       frameborder="1"
       style="width: 30%; height: 600px"
     ></iframe>
-  </body>
-</html>
